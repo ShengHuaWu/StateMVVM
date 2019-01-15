@@ -13,7 +13,6 @@ final class UserProfileViewController: UIViewController {
         case initial(avatar: UIImage?, name: String?, confirmEnabled: Bool, confirmHidden: Bool)
         case confirmEnabled(Bool)
         case loading
-        case failure
         case success
     }
     
@@ -107,9 +106,7 @@ private extension UserProfileViewController {
         case .confirmEnabled(let enabled):
             confirmButton.isEnabled = enabled
         case .loading:
-            print("Update user profile ...")
-        case .failure:
-            print("Failed to update user profile")
+            print("Loading ...")
         case .success:
             print("Succeeded to update user profile")
             coordinator?.finishUpdatingUserProfile()
