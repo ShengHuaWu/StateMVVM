@@ -15,7 +15,7 @@ protocol CoordinatorInterface: class {
 final class Coordinator {
     func start(on window: UIWindow) {
         let vc = UserProfileViewController()
-        vc.viewModel = editingUserProfileViewModel(event:update:)
+        vc.reducer = makeEditingUserProfileReducer(with: 9)
         vc.coordinator = self
         window.rootViewController = vc
         window.makeKeyAndVisible()

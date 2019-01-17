@@ -9,8 +9,15 @@
 import UIKit
 
 final class UserProfileViewController: UIViewController {
+    struct ViewModel: Equatable {
+        let avatar: UIImage?
+        let name: String?
+        let confirmEnabled: Bool
+        let confirmHidden: Bool
+    }
+    
     enum State: Equatable {
-        case initial(avatar: UIImage?, name: String?, confirmEnabled: Bool, confirmHidden: Bool)
+        case initial(ViewModel)
         case confirmEnabled(Bool)
         case loading
         case success
@@ -22,7 +29,7 @@ final class UserProfileViewController: UIViewController {
         case confirmDidPress(name: String?)
     }
     
-    var viewModel = viewingUserProfileViewModel(event: update:)
+    var reducer: Reducer<Event, State>?
     weak var coordinator: CoordinatorInterface?
     
     private let avatarImageView: UIImageView = {
@@ -66,15 +73,15 @@ final class UserProfileViewController: UIViewController {
         
         configureSubviewsLayout()
         
-        viewModel(.viewDidLoad, update)
+        reducer?.run(.viewDidLoad, update)
     }
     
     @objc func nameDidChange() {
-        viewModel(.nameDidChange(name: nameTextField.text), update)
+        reducer?.run(.nameDidChange(name: nameTextField.text), update)
     }
     
     @objc func confirmDidPress() {
-        viewModel(.confirmDidPress(name: nameTextField.text), update)
+        reducer?.run(.confirmDidPress(name: nameTextField.text), update)
     }
 }
 
@@ -98,11 +105,11 @@ private extension UserProfileViewController {
     
     func update(on state: State) {
         switch state {
-        case .initial(let avatar, let name, let enabled, let hidden):
-            avatarImageView.image = avatar
-            nameTextField.text = name
-            confirmButton.isEnabled = enabled
-            confirmButton.isHidden = hidden
+        case .initial(let viewModel):
+            avatarImageView.image = viewModel.avatar
+            nameTextField.text = viewModel.name
+            confirmButton.isEnabled = viewModel.confirmEnabled
+            confirmButton.isHidden = viewModel.confirmHidden
         case .confirmEnabled(let enabled):
             confirmButton.isEnabled = enabled
         case .loading:

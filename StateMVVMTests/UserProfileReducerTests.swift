@@ -1,5 +1,5 @@
 //
-//  UserProfileViewModelTests.swift
+//  UserProfileReducerTests.swift
 //  StateMVVMTests
 //
 //  Created by ShengHua Wu on 14.01.19.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import StateMVVM
 
-class UserProfileViewModelTests: XCTestCase {
+class UserProfileReducerTests: XCTestCase {
     var stateHistory: [UserProfileViewController.State] = []
 
     override func setUp() {
@@ -25,15 +25,22 @@ class UserProfileViewModelTests: XCTestCase {
     }
     
     func testThatViewDidLoadForViewing() {
-        viewingUserProfileViewModel(event: .viewDidLoad) { [unowned self] state in
+        GlobalEnvironment.apiClient.fetchUserProfile = { callback in
+            callback()
+        }
+        
+        let reducer = makeViewingUserProfileReducer(with: 0)
+        reducer.run(.viewDidLoad) { [unowned self] state in
             self.stateHistory.append(state)
         }
         
-        XCTAssertEqual(stateHistory, [.initial(avatar: UIImage(named: "Wayfair"), name: "Wayfair", confirmEnabled: false, confirmHidden: true)])
+        let viewModel = UserProfileViewController.ViewModel(avatar: UIImage(named: "Wayfair"), name: "Wayfair", confirmEnabled: false, confirmHidden: true)
+        XCTAssertEqual(stateHistory, [.loading, .initial(viewModel)])
     }
     
     func testThatNameDidChangeForViewing() {
-        viewingUserProfileViewModel(event: .nameDidChange(name: "Wayfair")) { [unowned self] state in
+        let reducer = makeViewingUserProfileReducer(with: 0)
+        reducer.run(.nameDidChange(name: "Wayfair")) { [unowned self] state in
             self.stateHistory.append(state)
         }
         
@@ -41,7 +48,8 @@ class UserProfileViewModelTests: XCTestCase {
     }
     
     func testThatConfirmDidPressForViewing() {
-        viewingUserProfileViewModel(event: .confirmDidPress(name: "Wayfair")) { [unowned self] state in
+        let reducer = makeViewingUserProfileReducer(with: 0)
+        reducer.run(.confirmDidPress(name: "Wayfair")) { [unowned self] state in
             self.stateHistory.append(state)
         }
         
@@ -53,15 +61,18 @@ class UserProfileViewModelTests: XCTestCase {
             callback()
         }
         
-        editingUserProfileViewModel(event: .viewDidLoad) { state in
+        let reducer = makeEditingUserProfileReducer(with: 0)
+        reducer.run(.viewDidLoad) { state in
             self.stateHistory.append(state)
         }
         
-        XCTAssertEqual(stateHistory, [.loading, .initial(avatar: UIImage(named: "Wayfair"), name: "Wayfair", confirmEnabled: true, confirmHidden: false)])
+        let viewModel = UserProfileViewController.ViewModel(avatar: UIImage(named: "Wayfair"), name: "Wayfair", confirmEnabled: true, confirmHidden: false)
+        XCTAssertEqual(stateHistory, [.loading, .initial(viewModel)])
     }
     
     func testThatNameDidChangeForEditingWithEmptyName() {
-        editingUserProfileViewModel(event: .nameDidChange(name: nil)) { state in
+        let reducer = makeEditingUserProfileReducer(with: 0)
+        reducer.run(.nameDidChange(name: nil)) { state in
             self.stateHistory.append(state)
         }
         
@@ -69,7 +80,8 @@ class UserProfileViewModelTests: XCTestCase {
     }
     
     func testThatNameDidChangeForEditingWithNonemptyName() {
-        editingUserProfileViewModel(event: .nameDidChange(name: "Wayfair")) { state in
+        let reducer = makeEditingUserProfileReducer(with: 0)
+        reducer.run(.nameDidChange(name: "Wayfair")) { state in
             self.stateHistory.append(state)
         }
         
@@ -81,7 +93,8 @@ class UserProfileViewModelTests: XCTestCase {
             callback()
         }
         
-        editingUserProfileViewModel(event: .confirmDidPress(name: nil)) { state in
+        let reducer = makeEditingUserProfileReducer(with: 0)
+        reducer.run(.confirmDidPress(name: "Wayfair")) { state in
             self.stateHistory.append(state)
         }
         
