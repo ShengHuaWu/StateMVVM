@@ -12,12 +12,13 @@
 		9B39EEF921ED1F98004A8871 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B39EEF721ED1F98004A8871 /* LaunchScreen.storyboard */; };
 		9B39EF0F21ED1FF3004A8871 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39EF0E21ED1FF3004A8871 /* UserProfileViewController.swift */; };
 		9B39EF1121ED21C9004A8871 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39EF1021ED21C9004A8871 /* Coordinator.swift */; };
-		9B39EF1321ED22F3004A8871 /* UserProfileReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39EF1221ED22F3004A8871 /* UserProfileReducers.swift */; };
+		9B39EF1321ED22F3004A8871 /* ViewingUserProfileReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39EF1221ED22F3004A8871 /* ViewingUserProfileReducer.swift */; };
 		9B39EF1821ED356A004A8871 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39EF1721ED356A004A8871 /* Environment.swift */; };
 		9B39EF1A21ED3592004A8871 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39EF1921ED3592004A8871 /* APIClient.swift */; };
 		9B39EF1C21ED363A004A8871 /* MockEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39EF1B21ED363A004A8871 /* MockEnvironment.swift */; };
 		9BC6609C21EFC81700E1B1A4 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6609B21EFC81700E1B1A4 /* Reducer.swift */; };
 		9BC6609E21EFCAE300E1B1A4 /* UserProfileReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC6609D21EFCAE300E1B1A4 /* UserProfileReducerTests.swift */; };
+		D85395A921F0BADB0034F2F8 /* EditingUserProfileReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85395A821F0BADB0034F2F8 /* EditingUserProfileReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,12 +41,13 @@
 		9B39EF0521ED1F98004A8871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B39EF0E21ED1FF3004A8871 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		9B39EF1021ED21C9004A8871 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		9B39EF1221ED22F3004A8871 /* UserProfileReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileReducers.swift; sourceTree = "<group>"; };
+		9B39EF1221ED22F3004A8871 /* ViewingUserProfileReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewingUserProfileReducer.swift; sourceTree = "<group>"; };
 		9B39EF1721ED356A004A8871 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		9B39EF1921ED3592004A8871 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9B39EF1B21ED363A004A8871 /* MockEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEnvironment.swift; sourceTree = "<group>"; };
 		9BC6609B21EFC81700E1B1A4 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		9BC6609D21EFCAE300E1B1A4 /* UserProfileReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileReducerTests.swift; sourceTree = "<group>"; };
+		D85395A821F0BADB0034F2F8 /* EditingUserProfileReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingUserProfileReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				9B39EF0E21ED1FF3004A8871 /* UserProfileViewController.swift */,
-				9B39EF1221ED22F3004A8871 /* UserProfileReducers.swift */,
+				9B39EF1221ED22F3004A8871 /* ViewingUserProfileReducer.swift */,
+				D85395A821F0BADB0034F2F8 /* EditingUserProfileReducer.swift */,
 			);
 			path = "User Profile";
 			sourceTree = "<group>";
@@ -220,8 +223,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D85395A921F0BADB0034F2F8 /* EditingUserProfileReducer.swift in Sources */,
 				9B39EEEF21ED1F97004A8871 /* AppDelegate.swift in Sources */,
-				9B39EF1321ED22F3004A8871 /* UserProfileReducers.swift in Sources */,
+				9B39EF1321ED22F3004A8871 /* ViewingUserProfileReducer.swift in Sources */,
 				9B39EF0F21ED1FF3004A8871 /* UserProfileViewController.swift in Sources */,
 				9B39EF1121ED21C9004A8871 /* Coordinator.swift in Sources */,
 				9BC6609C21EFC81700E1B1A4 /* Reducer.swift in Sources */,

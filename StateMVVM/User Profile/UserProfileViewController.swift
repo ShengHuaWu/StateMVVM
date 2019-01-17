@@ -9,6 +9,7 @@
 import UIKit
 
 final class UserProfileViewController: UIViewController {
+    
     struct ViewModel: Equatable {
         let avatar: UIImage?
         let name: String?
